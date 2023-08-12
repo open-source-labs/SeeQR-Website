@@ -95,61 +95,108 @@ const people = [
 // <p className="text-electric">{tempName}</p>
 // </div>
 
-const ITEMS_PER_PAGE = 12;
+// const ITEMS_PER_PAGE = 12;
+
+// const Teams = () => {
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const totalPages = Math.ceil(people.length / ITEMS_PER_PAGE);
+
+//   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+//   const endIndex = startIndex + ITEMS_PER_PAGE;
+
+//   const currentPagePeople = people.slice(startIndex, endIndex);
+
+//   return (
+//     <div className="flex flex-col justify-center items-center h-screen">
+//       <div className="grid grid-cols-4 gap-10 pb-6">
+//         {currentPagePeople.map((person, index) => (
+//           <div className="relative" key={index}>
+//             <div className="bg-white p-3 inline-block cursor-pointer transform transition hover:scale-105 space-y-2 text-center">
+//               <img
+//                 onClick={() => {
+//                   const win = window.open(person.github, '_blank');
+//                   if (win) win.focus();
+//                 }}
+// src={`https://avatars.githubusercontent.com/${person.github.replace(
+//   'https://github.com/',
+//   ''
+// )}`}
+//                 alt={person.name}
+//                 width={120}
+//               />
+//               <p className="text-marine">{person.name}</p>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//       <div className="pagination-controls flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+//         <button
+//           disabled={currentPage === 1}
+//           onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+//           className="w-full md:w-auto text-sm md:text-base bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 md:py-2 px-2 md:px-4 border border-blue-500 hover:border-transparent rounded"
+//         >
+//           Previous
+//         </button>
+//         <span className="text-sm md:text-base">
+//           Page {currentPage} of {totalPages}
+//         </span>
+//         <button
+//           onClick={() =>
+//             setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+//           }
+//           disabled={currentPage === totalPages}
+//           className="w-full md:w-auto text-sm md:text-base bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 md:py-2 px-2 md:px-4 border border-blue-500 hover:border-transparent rounded"
+//         >
+//           Next
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Teams;
 
 const Teams = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(people.length / ITEMS_PER_PAGE);
-
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-
-  const currentPagePeople = people.slice(startIndex, endIndex);
-
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <div className="grid grid-cols-4 gap-10 pb-6">
-        {currentPagePeople.map((person, index) => (
-          <div className="relative" key={index}>
-            <div className="bg-white p-3 inline-block cursor-pointer transform transition hover:scale-105 space-y-2 text-center">
+    <div className="w-3/5">
+      <ul className="w-full divide-y divide-black dark:divide-gray-700">
+        {people.map((person, index) => (
+          <li className="block w-full pb-3 sm:pb-4 py-3">
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0">
+                <img
+                  className="w-12 rounded-full cursor-pointer"
+                  onClick={() => {
+                    const win = window.open(person.github, '_blank');
+                    if (win) win.focus();
+                  }}
+                  src={`https://avatars.githubusercontent.com/${person.github.replace(
+                    'https://github.com/',
+                    ''
+                  )}`}
+                  alt={person.name}
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-black truncate ">
+                  {person.name}
+                </p>
+              </div>
+              <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                $320
+              </div>
               <img
+                src="../github-mark.png"
+                className="w-10 cursor-pointer"
                 onClick={() => {
                   const win = window.open(person.github, '_blank');
                   if (win) win.focus();
                 }}
-                src={`https://avatars.githubusercontent.com/${person.github.replace(
-                  'https://github.com/',
-                  ''
-                )}`}
-                alt={person.name}
-                width={120}
               />
-              <p className="text-marine">{person.name}</p>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
-      <div className="pagination-controls flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-          className="w-full md:w-auto text-sm md:text-base bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 md:py-2 px-2 md:px-4 border border-blue-500 hover:border-transparent rounded"
-        >
-          Previous
-        </button>
-        <span className="text-sm md:text-base">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(totalPages, prev + 1))
-          }
-          disabled={currentPage === totalPages}
-          className="w-full md:w-auto text-sm md:text-base bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 md:py-2 px-2 md:px-4 border border-blue-500 hover:border-transparent rounded"
-        >
-          Next
-        </button>
-      </div>
+      </ul>
     </div>
   );
 };
