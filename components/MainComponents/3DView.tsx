@@ -16,11 +16,11 @@ export default function SubHeading4() {
         </div>
       </div>
       <div className="grow max-w-2xl">
-        <img
+        {/* <img
           src={ThreeDGif.src}
           alt="View databases in 3D"
           className="max-w-full rounded-xl"
-        />
+        /> */}
       </div>
     </div>
   );
