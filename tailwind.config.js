@@ -7,6 +7,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      textColor: {
+        'marine': '#57BC90',
+        'forest': '#015249',
+        'sleekgray': '#A5A5AF',
+        'feather': '77C9D4',
+        'electric': '#3CC47C',
+
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
