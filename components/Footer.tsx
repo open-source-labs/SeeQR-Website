@@ -1,4 +1,6 @@
 import logo from "../assets/1.png";
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-transparent rounded-lg shadow m-4">
