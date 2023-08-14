@@ -13,7 +13,7 @@ export default function Download() {
         className="flex items-center rounded-full bg-white shadow-md px-4 py-2 mr-4 bg-gradient-to-r to-purple-300 from-purple-200 hover:-translate-y-1 transition duration-200 ease-out hover:bg-gradient-to-b hover:from-purple-300 hover:to-purple-200 hover:shadow-2xl hover:shadow-purple-500/50"
       >
         <div className="bg-apple bg-contain bg-no-repeat bg-center h-7 w-7 rounded-md mr-2"></div>
-        <p>macOS</p>
+        <span>macOS</span>
       </button>
       <button
         onClick={() =>
