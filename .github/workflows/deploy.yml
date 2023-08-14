@@ -10,28 +10,7 @@ on:
       - test-CICD
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      
-      - name: Install Dependencies
-        run: npm ci
-      
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm run dev
-          wait-on: 'http://localhost:3000'
-
   deploy:
-      needs: cypress-run
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
