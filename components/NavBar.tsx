@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 export default function NavBar(): JSX.Element {
   const router = useRouter();
+  
 
   const [menuOpen, setMenuOpen] = useState(false); // Added this state
 
