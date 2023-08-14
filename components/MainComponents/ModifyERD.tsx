@@ -1,5 +1,4 @@
 import ERDModGif from "../../assets/modify_db.gif";
-import Image from "next/image";
 
 export default function SubHeading3() {
   return (

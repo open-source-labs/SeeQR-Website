@@ -1,5 +1,4 @@
 import monitoringImage from "../../assets/resourceUtil.webp";
-import Image from "next/image";
 
 export default function SubHeading1() {
   return (

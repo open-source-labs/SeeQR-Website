@@ -3,7 +3,7 @@ export default function Download() {
     window.location.href = OSLink;
   };
   return (
-    <div className="flex flex-row items-center mt-10 mx-20">
+    <div className="flex flex-row items-center mt-10">
       <button
         onClick={() =>
           handleDownload(

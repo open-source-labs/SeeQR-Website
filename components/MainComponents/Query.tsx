@@ -1,5 +1,4 @@
 import queryGif from "../../assets/Comparing_Queries.gif";
-import Image from "next/image";
 
 export default function SubHeading2() {
   return (

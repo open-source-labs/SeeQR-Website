@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 
 const Teams = () => {
   const people = [

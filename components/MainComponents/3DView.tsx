@@ -1,5 +1,4 @@
 import ThreeDGif from "../../assets/3dhome.gif";
-import Image from "next/image";
 
 export default function SubHeading4() {
   return (
