@@ -1,6 +1,4 @@
-# Workflow 'CI': This workflow is designed to perform continuous integration.
-# On every push to the 'main' branch, it runs Cypress tests on the latest version of Ubuntu.
-# If the tests pass, it deploys the application to AWS Elastic Beanstalk.
+
 
 name: CICD
 
@@ -27,3 +25,4 @@ jobs:
                 --application-name Test \
                 --environment-name Test-env \
                 --version-label 2.0.0
+                --region us-east-1
