@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import logo from '../public/1.png';
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 export default function NavBar(): JSX.Element {
   const router = useRouter();
@@ -15,12 +16,12 @@ export default function NavBar(): JSX.Element {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 w-full m-0 p-0">
       <div className="flex flex-wrap items-center justify-between m-0 p-4 w-full">
-        <a href="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <img src={logo.src} className="h-10 mr-3" alt="SeeQR Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             SeeQR
           </span>
-        </a>
+        </Link>
         <button
           onClick={() => setMenuOpen(!menuOpen)} // Toggle the menu on click
           data-collapse-toggle="navbar-default"
@@ -54,7 +55,7 @@ export default function NavBar(): JSX.Element {
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a
+              <Link
                 href="/"
                 className={`block py-2 pl-3 pr-4 rounded md:p-0 ${
                   isActive('/')
@@ -64,10 +65,10 @@ export default function NavBar(): JSX.Element {
                 aria-current={isActive('/') ? 'page' : undefined}
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/docs"
                 className={`block py-2 pl-3 pr-4 rounded md:p-0 ${
                   isActive('/docs')
@@ -77,10 +78,10 @@ export default function NavBar(): JSX.Element {
                 aria-current={isActive('/docs') ? 'page' : undefined}
               >
                 Docs
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/team"
                 className={`block py-2 pl-3 pr-4 rounded md:p-0 ${
                   isActive('/team')
@@ -90,7 +91,7 @@ export default function NavBar(): JSX.Element {
                 aria-current={isActive('/team') ? 'page' : undefined}
               >
                 Team
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

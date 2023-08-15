@@ -1,4 +1,4 @@
-
+import GitHubLogo from "../public/github-mark.png"
 
 const Teams = () => {
   const people = [
@@ -76,7 +76,7 @@ const Teams = () => {
                 </p>
               </div>
               <img
-                src="../github-mark.png"
+                src={GitHubLogo.src}
                 className="w-10 cursor-pointer"
                 alt="github link"
                 onClick={() => {

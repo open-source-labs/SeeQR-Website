@@ -7,7 +7,7 @@ export default function Download() {
       <button
         onClick={() =>
           handleDownload(
-            "https://github.com/open-source-labs/SeeQR/releases/download/v11.0.0/SeeQR-11.0.0-Mac-arm64.dmg"
+            "https://github.com/open-source-labs/SeeQR/releases/download/v11.0.0/SeeQR-11.0.0.dmg"
           )
         }
         className="flex items-center rounded-full bg-white shadow-md px-4 py-2 mr-4 bg-gradient-to-r to-purple-300 from-purple-200 hover:-translate-y-1 transition duration-200 ease-out hover:bg-gradient-to-b hover:from-purple-300 hover:to-purple-200 hover:shadow-2xl hover:shadow-purple-500/50"
