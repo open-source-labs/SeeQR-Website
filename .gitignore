@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/.swc/
+
 # testing
 /coverage
 
@@ -22,6 +22,9 @@ npm-debug.log*
 
 # local env files
 .env*.local
+
+# vercel
+.vercel
 
 # typescript
 *.tsbuildinfo
