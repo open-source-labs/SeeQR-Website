@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import logo from '../public/1.png';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
+import Link from 'next/link';
 
 export default function NavBar(): JSX.Element {
   const router = useRouter();
-  
-
   const [menuOpen, setMenuOpen] = useState(false); // Added this state
 
   const isActive = (href: string): boolean => {
@@ -14,88 +12,48 @@ export default function NavBar(): JSX.Element {
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 w-full m-0 p-0">
-      <div className="flex flex-wrap items-center justify-between m-0 p-4 w-full">
-        <Link href="/" className="flex items-center">
-          <img src={logo.src} className="h-10 mr-3" alt="SeeQR Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            SeeQR
-          </span>
-        </Link>
-        <button
-          onClick={() => setMenuOpen(!menuOpen)} // Toggle the menu on click
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded="false"
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 1h15M1 7h15M1 13h15"
-            />
-          </svg>
-        </button>
-        <div
-          className={`${
-            menuOpen ? 'block' : 'hidden'
-          } w-full md:block md:w-auto`}
-          id="navbar-default"
-        >
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <Link
-                href="/"
-                className={`block py-2 pl-3 pr-4 rounded md:p-0 ${
-                  isActive('/')
-                    ? 'text-blue-700'
-                    : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover: dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-                }`}
-                aria-current={isActive('/') ? 'page' : undefined}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/docs"
-                className={`block py-2 pl-3 pr-4 rounded md:p-0 ${
-                  isActive('/docs')
-                    ? 'text-blue-700'
-                    : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover: dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-                }`}
-                aria-current={isActive('/docs') ? 'page' : undefined}
-              >
-                Docs
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/team"
-                className={`block py-2 pl-3 pr-4 rounded md:p-0 ${
-                  isActive('/team')
-                    ? 'text-blue-700'
-                    : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover: dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
-                }`}
-                aria-current={isActive('/team') ? 'page' : undefined}
-              >
-                Team
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+      <nav className="bg-white shadow">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="flex h-16 justify-between">
+                <div className="flex flex-row justify-bewteen">
+                  <div className="flex flex-shrink-0 items-center">
+                    <img className="h-8 w-auto" src={logo.src} alt="SeeQR Logo"/>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap ">
+                      SeeQR
+                    </span>
+                  </div>
+                </div>
+                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <Link href="/" className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${isActive('/') ?  'border-b-2 border-indigo-500 text-black' : 'border-b-2 border-white hover:border-gray-300 hover:text-gray-700' } hover:border-b-2  `}>Home</Link>
+                    <Link href="/docs" className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${isActive('/docs') ?  'border-b-2 border-indigo-500 text-black' : 'border-b-2 border-white hover:border-gray-300 hover:text-gray-700' } hover:border-b-2  `}>Docs</Link>
+                    <Link href="/team" className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${isActive('/team') ?  'border-b-2 border-indigo-500 text-black' : 'border-b-2 border-white hover:border-gray-300 hover:text-gray-700' } hover:border-b-2  `}>Team</Link>
+                  </div>
+                <div className="-mr-2 flex items-center sm:hidden">
+                  <button 
+                    type="button" 
+                    className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" 
+                    aria-controls="mobile-menu" 
+                    aria-expanded="false"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                  >
+                    <span className="sr-only">Open main menu</span>
+                    <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <svg className="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={`${menuOpen ? 'block' : 'hidden'} sm:hidden`} id="mobile-menu">
+              <div className="space-y-1 pb-3 pt-2">
+                <Link href="/" className={`block border-l-4 ${isActive('/') ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'text-gray-500'} py-2 pl-3 pr-4 text-base font-medium hover:bg-gray-50 hover:text-gray-700`}>Home</Link>
+                <Link href="/docs" className={`block border-l-4 ${isActive('/docs') ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'text-gray-500'} py-2 pl-3 pr-4 text-base font-medium hover:bg-gray-50 hover:text-gray-700`}>Docs</Link>
+                <Link href="/team" className={`block border-l-4 ${isActive('/team') ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'text-gray-500'} py-2 pl-3 pr-4 text-base font-medium hover:bg-gray-50 hover:text-gray-700`}>Team</Link>
+              </div>
+            </div>
+          </nav>
   );
 }
