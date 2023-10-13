@@ -45,3 +45,4 @@ jobs:
 
       - name: Deploy New ElasticBeanstalk Application Version
         run: aws elasticbeanstalk update-environment --environment-name SeeQR-Website-env --version-label "ver-${{ github.sha }}"
+        
