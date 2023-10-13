@@ -1,13 +1,47 @@
+name: deploy-to-eb
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  example-job:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+    
+    # checks out repo into the VM
+      - name: Checkout
+        uses: actions/checkout@v4
+    
+    # install Node (not sure if this is needed yet)
+      - name: Node Install
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm run foo
+
+      # create zip file to be stored in amazon s3 bucket
+      - name: Create ZIP Deployment Package
+        run: zip -r deploy_package.zip .next pages public styles *.json *.js *.ts  
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: "us-west-1"
+
+      - name: Upload Package to S3 Bucket
+        run: aws s3 cp deploy_package.zip s3://seeqr-splash-page-deploy/
+
+      - name: Create new ElasticBeanstalk Application Version
+        run: |
+          aws elasticbeanstalk create-application-version \
+          --application-name seeQRWebsite \
+          --source-bundle S3Bucket="seeqr-splash-page-deploy",S3Key="deploy_package.zip" \
+          --version-label "ver-${{ github.sha }}" \
+          --description "commit-sha-${{ github.sha }}"
+
+      - name: Deploy New ElasticBeanstalk Application Version
+        run: aws elasticbeanstalk update-environment --environment-name seeQRWebsite-env-1 --version-label "ver-${{ github.sha }}"
