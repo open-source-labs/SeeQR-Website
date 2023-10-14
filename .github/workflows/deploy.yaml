@@ -19,7 +19,7 @@ jobs:
     #   - name: Node Install
     #     uses: actions/setup-node@v3
     #     with:
-    #       node-version: '14'
+    #       node-version: '18'
 
       # create zip file to be stored in amazon s3 bucket
       - name: Create ZIP Deployment Package
@@ -36,7 +36,7 @@ jobs:
         run: aws s3 cp deploy_package.zip s3://seeqr-splash-page-deploy/
 
       - name: Create new ElasticBeanstalk Application Version
-        run:
+        run: |
           aws elasticbeanstalk create-application-version \
           --application-name SeeQR-Website \
           --source-bundle S3Bucket="seeqr-splash-page-deploy",S3Key="deploy_package.zip" \
@@ -45,4 +45,3 @@ jobs:
 
       - name: Deploy New ElasticBeanstalk Application Version
         run: aws elasticbeanstalk update-environment --environment-name SeeQR-Website-env --version-label "ver-${{ github.sha }}"
-        
