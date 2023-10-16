@@ -15,13 +15,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
     
-    # # install Node (not sure if this is needed yet)
-    #   - name: Node Install
-    #     uses: actions/setup-node@v3
-    #     with:
-    #       node-version: '18'
+    # install Node (not sure if this is needed yet)
+      - name: Node Install
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
     # Run NPM Install?
+      - name: Install Dependencies and Build
+        run: |
+          npm install
+          npm run build 
 
     # Run NPM Build?
 
@@ -49,4 +53,4 @@ jobs:
 
       # - name: Deploy New ElasticBeanstalk Application Version
       #   run: aws elasticbeanstalk update-environment --environment-name SeeQR-Website-env --version-label "ver-${{ github.sha }}"
-      
+
