@@ -21,6 +21,10 @@ jobs:
     #     with:
     #       node-version: '18'
 
+    # Run NPM Install?
+
+    # Run NPM Build?
+
       # create zip file to be stored in amazon s3 bucket
       - name: Create ZIP Deployment Package
         run: zip -r deploy_package.zip .next pages public styles *.json *.js *.ts
