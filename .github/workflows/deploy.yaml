@@ -38,28 +38,3 @@ jobs:
           existing_bucket_name: seeqr-splash-page-deploy
           region: us-west-1
           deployment_package: nodejs.zip
-      
-      
-      
-      # - name: configure aws credentials
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-      #     aws-region: "us-west-1"
-
-      # - name: upload deployment package to s3 bucket
-      #   run: aws s3 cp deploy_package_fromAction.zip s3://seeqr-splash-page-deploy/
-
-
-
-      # - name: Create new ElasticBeanstalk Application Version
-      #   run: |
-      #     aws elasticbeanstalk create-application-version \
-      #     --application-name SeeQR-Website \
-      #     --source-bundle S3Bucket="seeqr-splash-page-deploy",S3Key="deploy_package.zip" \
-      #     --version-label "ver-${{ github.sha }}" \
-      #     --description "commit-sha-${{ github.sha }}"
-
-      # - name: Deploy New ElasticBeanstalk Application Version
-      #   run: aws elasticbeanstalk update-environment --environment-name SeeQR-Website-env --version-label "ver-${{ github.sha }}"
