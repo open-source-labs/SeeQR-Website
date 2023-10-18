@@ -25,7 +25,7 @@ jobs:
         run: npm run build 
 
       - name: create zip deployment package
-        run: zip -r deploy_package3.zip .next pages public styles *.json *.js *.ts
+        run: zip -r deploy_package.zip .next pages public styles *.json *.js *.ts
 
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v21
@@ -37,4 +37,4 @@ jobs:
           version_label: "ver-${{ github.sha }}"
           existing_bucket_name: seeqr-splash-page-deploy
           region: us-west-1
-          deployment_package: nodejs.zip
+          deployment_package: deploy_package.zip
