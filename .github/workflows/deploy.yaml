@@ -31,7 +31,7 @@ jobs:
 
       # create zip file to be stored in amazon s3 bucket
       - name: Create ZIP Deployment Package
-        run: zip -r deploy_package.zip .next pages public styles *.json *.js *.ts
+        run: zip -r deploy_package_fromAction.zip .next pages public styles *.json *.js *.ts
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -41,7 +41,7 @@ jobs:
           aws-region: "us-west-1"
 
       - name: Upload Package to S3 Bucket
-        run: aws s3 cp deploy_package.zip s3://seeqr-splash-page-deploy/
+        run: aws s3 cp deploy_package_fromAction.zip s3://seeqr-splash-page-deploy/
 
       # - name: Create new ElasticBeanstalk Application Version
       #   run: |
