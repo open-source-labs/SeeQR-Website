@@ -37,7 +37,7 @@ jobs:
           version_label: "ver-${{ github.sha }}"
           existing_bucket_name: seeqr-splash-page-deploy
           region: us-west-1
-          deployment_package: node.zip
+          deployment_package: nodejs.zip
       
       
       
