@@ -27,25 +27,37 @@ jobs:
       - name: create zip deployment package
         run: zip -r deploy_package_fromAction.zip .next pages public styles *.json *.js *.ts
 
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
         with:
-          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
-          aws-region: "us-west-1"
+          aws_access_key: ${{ secrets.ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.SECRET_ACCESS_KEY }}
+          application_name: SeeQR-Website
+          environment_name: SeeQR-Website-env
+          version_label: "ver-${{ github.sha }}"
+          region: us-west-1
+      
+      
+      
+      # - name: configure aws credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+      #     aws-region: "us-west-1"
 
-      - name: upload deployment package to s3 bucket
-        run: aws s3 cp deploy_package_fromAction.zip s3://seeqr-splash-page-deploy/
+      # - name: upload deployment package to s3 bucket
+      #   run: aws s3 cp deploy_package_fromAction.zip s3://seeqr-splash-page-deploy/
 
 
 
-      - name: Create new ElasticBeanstalk Application Version
-        run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name SeeQR-Website \
-          --source-bundle S3Bucket="seeqr-splash-page-deploy",S3Key="deploy_package.zip" \
-          --version-label "ver-${{ github.sha }}" \
-          --description "commit-sha-${{ github.sha }}"
+      # - name: Create new ElasticBeanstalk Application Version
+      #   run: |
+      #     aws elasticbeanstalk create-application-version \
+      #     --application-name SeeQR-Website \
+      #     --source-bundle S3Bucket="seeqr-splash-page-deploy",S3Key="deploy_package.zip" \
+      #     --version-label "ver-${{ github.sha }}" \
+      #     --description "commit-sha-${{ github.sha }}"
 
-      - name: Deploy New ElasticBeanstalk Application Version
-        run: aws elasticbeanstalk update-environment --environment-name SeeQR-Website-env --version-label "ver-${{ github.sha }}"
+      # - name: Deploy New ElasticBeanstalk Application Version
+      #   run: aws elasticbeanstalk update-environment --environment-name SeeQR-Website-env --version-label "ver-${{ github.sha }}"
