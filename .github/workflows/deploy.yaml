@@ -36,7 +36,7 @@ jobs:
           environment_name: SeeQR-Website-env
           version_label: "ver-${{ github.sha }}"
           region: us-west-1
-          deployment_package: deploy_package3.zip
+          deployment_package: node.zip
       
       
       
