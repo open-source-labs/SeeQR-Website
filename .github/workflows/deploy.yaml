@@ -35,8 +35,9 @@ jobs:
           application_name: SeeQR-Website
           environment_name: SeeQR-Website-env
           version_label: "ver-${{ github.sha }}"
+          existing_bucket_name: seeqr-splash-page-deploy
           region: us-west-1
-          deployment_package: deploy_package3.zip
+          deployment_package: node.zip
       
       
       
