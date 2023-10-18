@@ -2,7 +2,7 @@ import GitHubLogo from "../public/github-mark.png"
 
 const Teams = () => {
   const people = [
-    { name: 'Annabelle Ni', github: 'https://github.com/annni11' },
+    { name: 'Phillip Ni', github: 'https://github.com/annni11' },
     { name: 'Derek Koh', github: 'https://github.com/derekoko' },
     { name: 'Peter Zepf', github: 'https://github.com/peterzepf' },
     { name: 'Tony Gao', github: 'https://github.com/tgao17' },
