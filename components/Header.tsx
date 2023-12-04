@@ -15,24 +15,6 @@ export default function Header() {
   const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    let timeoutId: any;
-
-    if (isMenuOpen) {
-      setShouldRender(true);
-    } else if (!isMenuOpen && shouldRender) {
-      timeoutId = setTimeout(() => {
-        setShouldRender(false);
-      }, 300); // Duration of the fade-out animation
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [isMenuOpen, shouldRender]);
-
-  /**
-   * Handles the resize event and closes the menu if the window width is greater than or equal to the md breakpoint.
-   */
-
-  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         // Tailwind's md breakpoint
@@ -40,16 +22,12 @@ export default function Header() {
       }
     };
     window.addEventListener('resize', handleResize);
-    // Clean up the event listener
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   /**
    * Prevent scrolling when the mobile menu is open
    */
-
 
   return (
     <>
@@ -92,32 +70,39 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
+
           <button
-            className="button-three md:hidden"
-            aria-controls="primary-navigation"
+            className={`md:hidden menu ${isMenuOpen ? 'opened' : ''}`}
+            onClick={() => {
+              if (!isMenuOpen) {
+                setIsMenuOpen(true);
+                setShouldRender(true);
+              } else {
+                setIsMenuOpen(false);
+                setTimeout(() => {
+                  setShouldRender(false);
+                }, 300); // Duration of the fade-out animation
+              }
+            }}
+            aria-label="Main Menu"
             aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <svg
-              stroke="var(--button-color)"
-              fill="none"
-              className="hamburger"
-              viewBox="-10 -10 120 120"
-              width="40"
-            >
+            <svg width="35" height="35" viewBox="0 0 100 100">
               <path
-                className="line"
-                strokeWidth="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m 20 40 h 60 a 1 1 0 0 1 0 20 h -60 a 1 1 0 0 1 0 -40 h 30 v 70"
-              ></path>
+                className="line line1"
+                d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"
+              />
+              <path className="line line2" d="M 20,50 H 80" />
+              <path
+                className="line line3"
+                d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"
+              />
             </svg>
           </button>
         </div>
         {/* Mobile Navigation */}
 
-        {shouldRender && (
+        {isMenuOpen && (
           <>
             <div
               className={` absolute w-full z-40 inset-x-0  origin-top-right md:hidden mobile-navigation ${
@@ -126,27 +111,15 @@ export default function Header() {
             >
               <div className=" shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div className="px-2 py-2 pb-3 space-y-1">
-                  <Link
-                    href="/"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 animated-link"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/docs"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 animated-link"
-                  >
-                    Docs
-                  </Link>
-                  <Link
-                    href="/team"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 animated-link"
-                  >
-                    Team
-                  </Link>
+                  {navigation.main.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 animated-link"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                   <Link
                     href="https://github.com/open-source-labs/SeeQR"
                     target="_blank"
@@ -156,7 +129,6 @@ export default function Header() {
                   >
                     Source Code
                   </Link>
-                
                 </div>
               </div>
             </div>
