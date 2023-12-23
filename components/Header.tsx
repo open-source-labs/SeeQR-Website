@@ -19,6 +19,7 @@ export default function Header() {
       if (window.innerWidth >= 768) {
         // Tailwind's md breakpoint
         setIsMenuOpen(false);
+        document.body.classList.remove('menu-open'); // Remove the CSS class when the menu is closed
       }
     };
     window.addEventListener('resize', handleResize);
@@ -28,6 +29,19 @@ export default function Header() {
   /**
    * Prevent scrolling when the mobile menu is open
    */
+  useEffect(() => {
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open'); // Add the CSS class when the menu is open
+    } else {
+      document.body.classList.remove('menu-open'); // Remove the CSS class when the menu is closed
+    }
+  }, [isMenuOpen]);
+
+
+  
 
   return (
     <>
