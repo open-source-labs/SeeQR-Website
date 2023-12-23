@@ -36,9 +36,9 @@ export default function Header() {
           {/* Logo and Title */}
           <div className="flex justify-center">
             <img className="h-12 w-auto pr-2" src={logo.src} alt="SeeQR Logo" />
-            <a className="text-4xl font-semibold text-gray-700" href="/">
+            <Link className="text-4xl font-semibold text-gray-700" href="/">
               SeeQR
-            </a>
+            </Link>
           </div>
 
           {/* Navigation */}
