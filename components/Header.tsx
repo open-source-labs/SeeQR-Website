@@ -12,22 +12,14 @@ const navigation = {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        // Tailwind's md breakpoint
-        setIsMenuOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  /**
-   * Prevent scrolling when the mobile menu is open
-   */
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open'); // Add the CSS class when the menu is open
+    } else {
+      document.body.classList.remove('menu-open'); // Remove the CSS class when the menu is closed
+    }
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -36,9 +28,9 @@ export default function Header() {
           {/* Logo and Title */}
           <div className="flex justify-center">
             <img className="h-12 w-auto pr-2" src={logo.src} alt="SeeQR Logo" />
-            <a className="text-4xl font-semibold text-gray-700" href="/">
+            <Link className="text-4xl font-semibold text-gray-700" href="/">
               SeeQR
-            </a>
+            </Link>
           </div>
 
           {/* Navigation */}
@@ -76,12 +68,8 @@ export default function Header() {
             onClick={() => {
               if (!isMenuOpen) {
                 setIsMenuOpen(true);
-                setShouldRender(true);
               } else {
                 setIsMenuOpen(false);
-                setTimeout(() => {
-                  setShouldRender(false);
-                }, 300); // Duration of the fade-out animation
               }
             }}
             aria-label="Main Menu"
