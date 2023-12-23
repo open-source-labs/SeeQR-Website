@@ -12,25 +12,6 @@ const navigation = {
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        // Tailwind's md breakpoint
-        setIsMenuOpen(false);
-        document.body.classList.remove('menu-open'); // Remove the CSS class when the menu is closed
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  /**
-   * Prevent scrolling when the mobile menu is open
-   */
-  useEffect(() => {
-  }, [isMenuOpen]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -39,9 +20,6 @@ export default function Header() {
       document.body.classList.remove('menu-open'); // Remove the CSS class when the menu is closed
     }
   }, [isMenuOpen]);
-
-
-  
 
   return (
     <>
@@ -90,12 +68,8 @@ export default function Header() {
             onClick={() => {
               if (!isMenuOpen) {
                 setIsMenuOpen(true);
-                setShouldRender(true);
               } else {
                 setIsMenuOpen(false);
-                setTimeout(() => {
-                  setShouldRender(false);
-                }, 300); // Duration of the fade-out animation
               }
             }}
             aria-label="Main Menu"
