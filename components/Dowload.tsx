@@ -7,7 +7,7 @@ export default function Download() {
       <button
         onClick={() =>
           handleDownload(
-            "https://github.com/open-source-labs/SeeQR/releases/download/v11.0.0/SeeQR-11.0.0.dmg"
+            "https://github.com/open-source-labs/SeeQR/releases/download/v13.0.0/SeeQR-13.0.0.dmg"
           )
         }
         className="flex items-center rounded-md bg-white shadow-md px-4 py-2 mr-4 bg-gradient-to-r to-green-300 from-green-200 hover:-translate-y-1 transition duration-200 ease-out hover:bg-gradient-to-b hover:from-green-300 hover:to-green-200 hover:shadow-2xl hover:shadow-green-500/50"
@@ -18,7 +18,7 @@ export default function Download() {
       <button
         onClick={() =>
           handleDownload(
-            "https://github.com/open-source-labs/SeeQR/releases/download/v11.0.0/SeeQR-11.0.0-win.zip"
+            "https://github.com/open-source-labs/SeeQR/releases/download/v13.0.0/SeeQR.13.0.0.exe"
           )
         }
         className="flex items-center bg-white shadow-md rounded-md px-4 py-2 mr-4 bg-gradient-to-r to-green-300 from-green-200 hover:-translate-y-1 transition duration-200 ease-out hover:bg-gradient-to-b hover:from-green-300 hover:to-green-200 hover:shadow-2xl hover:shadow-green-500/50"
@@ -29,7 +29,7 @@ export default function Download() {
       <button
         onClick={() =>
           handleDownload(
-            "https://github.com/open-source-labs/SeeQR/releases/download/v11.0.0/SeeQR-11.0.0.AppImage"
+            "https://github.com/open-source-labs/SeeQR/releases/download/v13.0.0/SeeQR-13.0.0.AppImage"
           )
         }
         className="flex items-center bg-white shadow-md rounded-md px-4 py-2 bg-gradient-to-r to-green-300 from-green-200 hover:-translate-y-1 transition duration-200 ease-out hover:bg-gradient-to-b hover:from-green-300 hover:to-green-200 hover:shadow-2xl hover:shadow-green-500/50"
