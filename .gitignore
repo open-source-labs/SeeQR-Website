@@ -13,6 +13,12 @@
 # production
 /build
 
+# Compiled files
+/dist
+/client/dist
+/build
+/out
+
 # misc
 .DS_Store
 *.pem
