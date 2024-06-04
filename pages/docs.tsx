@@ -1,5 +1,5 @@
-import NavBar from "@/components/NavBar";
-import Header from "@/components/Header";
+import NavBar from '@/components/NavBar';
+import Header from '@/components/Header';
 
 export default function Docs() {
   return (
@@ -7,8 +7,8 @@ export default function Docs() {
       {/* <NavBar /> */}
       <div>
         <iframe
-          src="https://master--zippy-naiad-6561d5.netlify.app/docs/intro"
-          className="w-screen h-screen"
+          src='https://master--zippy-naiad-6561d5.netlify.app/docs/intro'
+          className='w-screen h-screen'
         ></iframe>
       </div>
     </>
